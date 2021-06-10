@@ -39,10 +39,10 @@ function draw(){
    
     ctx.drawImage( bg, 0, 0)
     ctx.drawImage( bird, birdX, birdY )
-
+    let gap = pipeNorth.height + 100
     for(let i=0 ; i< pipes.length; i++){
         ctx.drawImage(pipeNorth, pipes[i].x, pipes[i].y )
-        ctx.drawImage(pipeSouth, pipes[i].x,  pipes[i].y + pipeNorth.height + 100)
+        ctx.drawImage(pipeSouth, pipes[i].x,  pipes[i].y + gap)
         pipes[i].x -= 1
 
        if (pipes[i].x + pipeNorth.width < 0) {
@@ -51,10 +51,41 @@ function draw(){
                 y: -Math.floor(Math.random() * (pipeNorth.height -50))
             }
        }    
+
+        if (pipes[i].x == 20) {
+            score++
+        }   
        
        // collisions with pipes
+        // DONT FREAK OUT READING THIS
+        // Breathe in. 
+        // Relax.
+        // Read slowly
+        // Read carefully
+        // Visualize it
+        if( birdX + bird.width >= pipes[i].x && birdX <= pipes[i].x + pipeNorth.width && (birdY <= pipes[i].y + pipeNorth.height || birdY+bird.height >= pipes[i].y + gap)){
+            isGameOver = true
+        }
 
-       // increment the score
+
+        // collision explanation
+        
+        // 1. birdX + bird.width >= pipes[i].x && birdX <= pipes[i].x + pipeNorth.width 
+        /*
+            That line of code actually checks if the bird is between the boundries of the pipe (i.e the left and right hand edges)
+        */
+
+        //2.(birdY <= pipes[i].y + pipeNorth.height 
+        /*
+            That checks if the bird is touching the bottom side of pipeNorth or 
+        */
+
+        //3.  birdY+bird.height >= pipes[i].y + constant)   
+        /*
+            checks the upper side of the pipeSouth
+        */
+      
+
     }
     
     if (birdY + bird.height > canvas.height - 70) {

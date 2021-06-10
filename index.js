@@ -80,7 +80,7 @@ function draw(){
             That checks if the bird is touching the bottom side of pipeNorth or 
         */
 
-        //3.  birdY+bird.height >= pipes[i].y + constant)   
+        //3.  birdY+bird.height >= pipes[i].y + gap)   
         /*
             checks the upper side of the pipeSouth
         */

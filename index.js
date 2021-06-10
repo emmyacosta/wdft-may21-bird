@@ -51,8 +51,8 @@ function draw(){
                 y: -Math.floor(Math.random() * (pipeNorth.height -50))
             }
        }    
-
-        if (pipes[i].x == 20) {
+        //incrementing the score
+        if (pipes[i].x == 10) {
             score++
         }   
        
